@@ -1,0 +1,60 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>キーワード抽出デモ</title>
+    <meta content="" property="og:title" />
+    <meta content="" property="og:description" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@unpuy_tw" />
+    <meta property="og:title" content="キーワード抽出デモ" />
+    <meta property="og:description" content="Wikipediaを用いたキーワード抽出のデモ" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+{% block content %}
+<div class="container-fluid">
+    <div class="py-5 text-center">
+        <h2>キーワード抽出のデモ</h2>
+        <p class="lead"><a href="https://pompom168.hatenablog.com/entry/2019/08/09/144054">ここ</a>で提案した Wikipedia を活用したキーワード抽出のデモ</p>
+         <div class="form">
+            <form action="/keyword" method="post">
+                <div class="form-group">
+                    <textarea id="text" name="text" class="form-control" rows="5">{{input_text}}</textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">送信</button>
+            </form>
+             {% if word_entities %}
+             <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">word</th>
+                        <th scope="col">entity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for word, entity in word_entities.items() %}
+                    <tr>
+                        <td>{{word}}</td>
+                        <td>{{entity}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+             </table>
+             {% endif %}
+         </div>
+    </div>
+    <footer class="text-center text-small">
+        Created By <a href="https://twitter.com/unpuy_tw">@unpuy_tw</a>
+    </footer>
+</div>
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
